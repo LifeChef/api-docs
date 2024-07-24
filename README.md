@@ -71,6 +71,16 @@ LifeChef is a subscription-based service providing medically tailored meals (MTN
 
 Partners are provided with a unique set of API keys that identify them from other partners. Using these keys, partners can perform various operations such as looking up coupons, querying patient statuses, and retrieving product order details. The API does not permit modification of existing patient records but allows the creation of new subscriptions through the creation of referrals. Modification permited only to created referrals who still not use referral URL.
 
+## Glossary of Terms
+
+- **Referral**: A potential patient who has started but not completed the signup process.
+- **Patient**: A referral who has completed the signup process.
+- **Product Order**: An order created from a subscription at a specific time for a particular patient.
+- **Order Modification Date**: The date when a product order is created from a subscription.
+- **Delivery Date**: The date when the product order is shipped.
+- **Program**: The patient's meal plan/goal/diet.
+- **Flag Skipped**: Indicates whether a patient has skipped an upcoming week.
+
 ### Key API Operations
 
 1. **Look Up Coupons**:
@@ -901,143 +911,67 @@ The user has the option to skip one or more upcoming deliveries (weeks). When a 
 
 ### Test Environment
 
-- **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/#/)
+- **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/)
 - **Production Environment**: Requires authorization with a key obtained from a LifeChef representative.
 
 ### Authorization
 
 1. Click on **Authorize**.
-2. Enter the key.
+2. Enter the key obtained from a LifeChef representative.
 3. Click **Authorize** in the modal window.
-4. Close the window. The lock icon will appear closed, indicating successful authorization.
+4. Close the window. The lock icon on the right side will appear closed, indicating successful authorization.
 
 ### Checking Available Values
 
-1. **Programs**: Execute the `GET /programs` request to check available program values.
-2. **Allergens**: Execute the `GET /allergens` request to check available allergen values.
-3. **Coupons**: Execute the `GET /coupons` request to check available coupon values.
-
-### Creating a Referral
-
-1. **Endpoint**: `POST /referral`
-2. **Description**: This endpoint is used to create a new referral in the LifeChef system. A referral represents a potential patient who has been referred to LifeChef but has not yet completed the full signup process.
-3. **Request Parameters**: The request should include all known details about the referral, such as contact information, shipping and billing addresses, and program preferences. Mandatory fields are marked with "\*".
-4. **Response**: Upon successful creation, the API will return a referral ID and a unique URL that the referral can use to complete their signup process.
-
-**Request Example**:
-
-```json
-{
-  "clientIdentifier": "partner123",
-  "email": "john.doe@example.com",
-  "phone": "123-456-7890",
-  "program": "diabetes-friendly",
-  "allergens": ["peanuts", "gluten"],
-  "shippingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
-  },
-  "billingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
-  },
-  "deliveryDay": "Monday"
-}
-```
-
-**Response Example**:
-
-```json
-{
-  "referralId": "referral123",
-  "status": "Referral",
-  "completionUrl": "https://lifechef.com/complete-signup/referral123"
-}
-```
+1. **Programs**: Execute the `GET /v1/programs` request to check available program values.
+2. **Allergens**: Execute the `GET /v1/allergens` request to check available allergen values.
+3. **Coupons**: Execute the `GET /v1/coupons` request to check available coupon values.
 
 ## Error Handling and Limitations
 
 1. **Unauthorized Access**: Error 401 - UNAUTHORIZED if the user is not authorized or uses an incorrect key.
 2. **Invalid Values**: Errors for invalid values in parameters such as `clientIdentifier`, `email`, `phone`, `allergens`, `zip code`, `program`, `days`, and `coupon`.
 3. **Client Already Exists**: Error if a referral is initiated for a user who already has a subscription.
-4. **Rate Limit**: 100 requests per minute per IP address. Exceeding this limit results in error 429.
+4. **Referral not found**: Error if a referral record is not found in LifeChef DB or value is incorrect.
+5. **Rate Limit**: 100 requests per minute per IP address. Exceeding this limit results in error 429.
 
-## Examples and Use Cases
+### Default or predefined values
 
-### Example: Creating a Referral
-
-**Request**:
+1. Predefine program value set as - "mediterranean".
+2. Predefine days value set as - "5"
+3. Predefine selection of Breakfasts set as - "true"
+4. Predefine delivery day set as - "tuesday"
+5. If the coupon value is not set, the default coupon will be set automatically. In case several coupons are available the Default coupon will be the top one.
+   
+**Predefined Example**:
 
 ```json
 {
-  "clientIdentifier": "partner123",
-  "email": "john.doe@example.com",
-  "phone": "123-456-7890",
-  "program": "diabetes-friendly",
-  "allergens": ["peanuts", "gluten"],
+  "firstName": "",
+  "lastName": "",
+  "email": "",
+  "phone": "",
   "shippingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
+    "street": "",
+    "city": "",
+    "state": "",
+    "zipCode": ""
   },
   "billingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
+    "street": "",
+    "city": "",
+    "state": "",
+    "zipCode": ""
   },
-  "deliveryDay": "Monday"
-}
-```
-
-**Response**:
-
-```json
-{
-  "referralId": "referral123",
-  "status": "Referral",
-  "completionUrl": "https://lifechef.com/complete-signup/referral123"
-}
-```
-
-### Example: Retrieving User Data
-
-**Request**:
-
-```json
-{
-  "id": "user@example.com"
-}
-```
-
-**Response**:
-
-```json
-{
-  "userId": "user123",
-  "email": "john.doe@example.com",
-  "phone": "123-456-7890",
-  "program": "diabetes-friendly",
-  "allergens": ["peanuts", "gluten"],
-  "shippingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
-  },
-  "billingAddress": {
-    "street": "123 Main St",
-    "city": "Anytown",
-    "state": "CA",
-    "zip": "12345"
-  },
-  "deliveryDay": "Monday",
-  "status": "Active"
+  "program": "mediterranean",
+  "coupon": "",
+  "allergens": [
+    "string"
+  ],
+  "clientIdentifier": "",
+  "days": "5",
+  "breakfasts": true,
+  "deliveryDay": "tuesday"
 }
 ```
 
@@ -1046,16 +980,6 @@ The user has the option to skip one or more upcoming deliveries (weeks). When a 
 - **Rate Limit**: 100 requests per minute per IP address.
 - **Monitoring Usage**: Partners should implement monitoring to track their API usage and avoid hitting the rate limit.
 - **Handling Rate Limit Exceeded**: If you receive a 429 error, reduce the frequency of your requests and wait before making additional requests.
-
-## Glossary of Terms
-
-- **Referral**: A potential patient who has started but not completed the signup process.
-- **Patient**: A referral who has completed the signup process.
-- **Product Order**: An order created from a subscription at a specific time for a particular patient.
-- **Order Modification Date**: The date when a product order is created from a subscription.
-- **Delivery Date**: The date when the product order is shipped.
-- **Program**: The patient's meal plan/goal/diet.
-- **Flag Skipped**: Indicates whether a patient has skipped an upcoming week.
 
 ## Versioning Information
 
