@@ -18,6 +18,7 @@
    - [Dates](#dates)
    - [Program](#program)
    - [Flag Skipped](#flag-skipped)
+   - [Flag Swapped](flag-swapped)
 7. [Using the API](#using-the-api)
    - [Test Environment](#test-environment)
    - [Authorization](#authorization)
@@ -80,6 +81,7 @@ Partners are provided with a unique set of API keys that identify them from othe
 - **Delivery Date**: The date when the product order is shipped.
 - **Program**: The patient's meal plan/goal/diet.
 - **Flag Skipped**: Indicates whether a patient has skipped an upcoming week.
+- **Flag Swapped**: Indicates product changes manually by patient.
 
 ### Key API Operations
 
@@ -906,6 +908,13 @@ The user has the option to skip one or more upcoming deliveries (weeks). When a 
 
 - **True**: The user skipped the week (does not expect delivery).
 - **False**: The week is active (the user expects to receive a product order on a delivery date).
+
+- ### Flag Swapped
+
+The user has the option to swap one or more products. The parameter has several values:
+
+- **True**: The user manually changes the product.
+- **False**: The user use automated (Smart Bite) product selection.
 
 ## Using the API
 
