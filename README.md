@@ -18,7 +18,7 @@
    - [Dates](#dates)
    - [Program](#program)
    - [Flag Skipped](#flag-skipped)
-   - [Flag Swapped](flag-swapped)
+   - [Flag Swapped](#flag-swapped)
 7. [Using the API](#using-the-api)
    - [Test Environment](#test-environment)
    - [Authorization](#authorization)
