@@ -771,19 +771,19 @@ Your JSON response example is mostly correctly formatted, but there are some min
   }
 ]
 ```
-		  ### Get Bulk Users List
+### Get Bulk Users List
 
-		  - **Endpoint**: `GET /v1/users`
-		  - **Description**: Retrieves a list of users and their data with pagination.
+- **Endpoint**: `GET /v1/users`
+- **Description**: Retrieves a list of users and their data with pagination.
 
-		  ### Get Available Programs
+### Get Available Programs
 
-		  - **Endpoint**: `GET /v1/programs`
-		  - **Description**: Retrieves a list of available meal programs.
+- **Endpoint**: `GET /v1/programs`
+- **Description**: Retrieves a list of available meal programs.
 
-		  **Response Example**:
+**Response Example**:
 
-		  ```json
+```json
 		  [
 		    {
 		      "id": "mediterranean",
@@ -802,16 +802,16 @@ Your JSON response example is mostly correctly formatted, but there are some min
 		      "title": "Weight Loss Program"
 		    }
 		  ]
-		  ```
+```
 
-		  ### Get Available Allergens
+### Get Available Allergens
 
-		  - **Endpoint**: `GET /allergens`
-		  - **Description**: Retrieves a list of allergens that can be excluded from meal plans.
+- **Endpoint**: `GET /allergens`
+- **Description**: Retrieves a list of allergens that can be excluded from meal plans.
 
-		  **Response Example**:
+**Response Example**:
 
-		  ```json
+```json
 		  [
 		    {
 		      "id": "cows-milk",
@@ -854,157 +854,157 @@ Your JSON response example is mostly correctly formatted, but there are some min
 		      "title": "Sesame"
 		    }
 		  ]
-		  ```
+```
 
-		  ### Get Available Coupons
+### Get Available Coupons
 
-		  - **Endpoint**: `GET /coupons`
-		  - **Description**: Retrieves a list of available coupons for the partner.
+- **Endpoint**: `GET /coupons`
+- **Description**: Retrieves a list of available coupons for the partner.
 
-		  **Response Example**:
+**Response Example**:
 
-		  ```json
-		  [
-		    "coupon_name_1",
-		    "coupon_name_2",
-		    "coupon_name_3"
-		  ]
-		  ```
+```json
+[
+"coupon_name_1",
+"coupon_name_2",
+"coupon_name_3"
+]
+```
 
-		  ## Detailed Descriptions
+## Detailed Descriptions
 
-		  ### Referral Status
+### Referral Status
 
-		  - **Referral**: The initial status when a subscription is created with all known details (shipping and billing addresses, program settings, cart composition). The user has not yet completed the signup process.
-		  - **Subs (ACTIVE)**: Assigned immediately after the subscription is completed. Product orders are generated from this subscription.
-		  - **Subs (PAUSED)**: The subscription is paused, and no product orders are created. The dates of the nearest week are shifted by +7 from the current date.
+- **Referral**: The initial status when a subscription is created with all known details (shipping and billing addresses, program settings, cart composition). The user has not yet completed the signup process.
+- **Subs (ACTIVE)**: Assigned immediately after the subscription is completed. Product orders are generated from this subscription.
+- **Subs (PAUSED)**: The subscription is paused, and no product orders are created. The dates of the nearest week are shifted by +7 from the current date.
 
-		  ### Dates
+### Dates
 
-		  - **Order Modification Date**: The date when a product order is created from a subscription. For Tuesday deliveries, the order creation date is Thursday 8am EST; for Friday deliveries, it is Monday 8am EST.
-		  - **Delivery Date**: The date when the product order is shipped. The user sees an approximate delivery date (+1 day from the shipping date).
+- **Order Modification Date**: The date when a product order is created from a subscription. For Tuesday deliveries, the order creation date is Thursday 8am EST; for Friday deliveries, it is Monday 8am EST.
+- **Delivery Date**: The date when the product order is shipped. The user sees an approximate delivery date (+1 day from the shipping date).
 
-		  ### Program
+### Program
 
-		  A program refers to the user's MTM. The user can have only one program. Available options include:
+A program refers to the user's MTM. The user can have only one program. Available options include:
 
-		  - **Healthy Life (mediterranean)**
-		  - **Diabetes Program (diabetes-friendly)**
-		  - **Heart Program (dashlow-sodium)**
-		  - **Weight Loss Program (low-carbohydrate)**
+- **Healthy Life (mediterranean)**
+- **Diabetes Program (diabetes-friendly)**
+- **Heart Program (dashlow-sodium)**
+- **Weight Loss Program (low-carbohydrate)**
 
-		  The program also has additional parameters, based on which the cart composition is generated: allergens, additional diets, meals servings per week and dislike meal components.
+The program also has additional parameters, based on which the cart composition is generated: allergens, additional diets, meals servings per week and dislike meal components.
 
-		  ### Flag Skipped
+### Flag Skipped
 
-		  The user has the option to skip one or more upcoming deliveries (weeks). When a week is skipped, a product order is not created for that week, and the composition is not saved for the next week. The parameter has several values:
+The user has the option to skip one or more upcoming deliveries (weeks). When a week is skipped, a product order is not created for that week, and the composition is not saved for the next week. The parameter has several values:
 
-		  - **True**: The user skipped the week (does not expect delivery).
-		  - **False**: The week is active (the user expects to receive a product order on a delivery date).
+- **True**: The user skipped the week (does not expect delivery).
+- **False**: The week is active (the user expects to receive a product order on a delivery date).
 
-		  ### Flag Swapped
+### Flag Swapped
 
-		  The user has the option to swap one or more products. The parameter has several values:
+The user has the option to swap one or more products. The parameter has several values:
 
-		  - **True**: The user manually changes the product.
-		  - **False**: The user uses automated (Smart Bite) product selection.
+- **True**: The user manually changes the product.
+- **False**: The user uses automated (Smart Bite) product selection.
 
-		  ## Using the API
+## Using the API
 
-		  ### Test Environment
+### Test Environment
 
-		  - **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/)
-		  - **Production Environment**: Requires authorization with a key obtained from a LifeChef representative.
+- **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/)
+- **Production Environment**: Requires authorization with a key obtained from a LifeChef representative.
 
-		  ### Authorization
+### Authorization
 
-		  1. Click on **Authorize**.
-		  2. Enter the key obtained from a LifeChef representative.
-		  3. Click **Authorize** in the modal window.
-		  4. Close the window. The lock icon on the right side will appear closed, indicating successful authorization.
+1. Click on **Authorize**.
+2. Enter the key obtained from a LifeChef representative.
+3. Click **Authorize** in the modal window.
+4. Close the window. The lock icon on the right side will appear closed, indicating successful authorization.
 
-		  ### Checking Available Values
+### Checking Available Values
 
-		  1. **Programs**: Execute the `GET /v1/programs` request to check available program values.
-		  2. **Allergens**: Execute the `GET /v1/allergens` request to check available allergen values.
-		  3. **Coupons**: Execute the `GET /v1/coupons` request to check available coupon values.
+1. **Programs**: Execute the `GET /v1/programs` request to check available program values.
+2. **Allergens**: Execute the `GET /v1/allergens` request to check available allergen values.
+3. **Coupons**: Execute the `GET /v1/coupons` request to check available coupon values.
 
-		  ## Error Handling and Limitations
+## Error Handling and Limitations
 
-		  1. **Unauthorized Access**: Error 401 - UNAUTHORIZED if the user is not authorized or uses an incorrect key.
-		  2. **Invalid Values**: Errors for invalid values in parameters such as `clientIdentifier`, `email`, `phone`, `allergens`, `zip code`, `program`, `days`, and `coupon`.
-		  3. **Client Already Exists**: Error if a referral is initiated for a user who already has a subscription.
-		  4. **Referral Not Found**: Error if a referral record is not found in LifeChef DB or value is incorrect.
-		  5. **Rate Limit**: 100 requests per minute per IP address. Exceeding this limit results in error 429.
+1. **Unauthorized Access**: Error 401 - UNAUTHORIZED if the user is not authorized or uses an incorrect key.
+2. **Invalid Values**: Errors for invalid values in parameters such as `clientIdentifier`, `email`, `phone`, `allergens`, `zip code`, `program`, `days`, and `coupon`.
+3. **Client Already Exists**: Error if a referral is initiated for a user who already has a subscription.
+4. **Referral Not Found**: Error if a referral record is not found in LifeChef DB or value is incorrect.
+5. **Rate Limit**: 100 requests per minute per IP address. Exceeding this limit results in error 429.
 
-		  ## Default or Predefined Values
+## Default or Predefined Values
 
-		  1. Predefine `program` value set as - "mediterranean".
-		  2. Predefine `days` value set as - "5".
-		  3. Predefine selection of `breakfasts` set as - "true".
-		  4. Predefine `deliveryDay` set as - "tuesday".
-		  5. Predefine `allergens` set as - "string". If need to add allergens "string" should be replaced by correct.
-		  6. If the `coupon` value is not set, the default coupon will be set automatically. In case several coupons are available, the default coupon will be the top one.
+1. Predefine `program` value set as - "mediterranean".
+2. Predefine `days` value set as - "5".
+3. Predefine selection of `breakfasts` set as - "true".
+4. Predefine `deliveryDay` set as - "tuesday".
+5. Predefine `allergens` set as - "string". If need to add allergens "string" should be replaced by correct.
+6. If the `coupon` value is not set, the default coupon will be set automatically. In case several coupons are available, the default coupon will be the top one.
 
-		  **Predefined Example**:
+**Predefined Example**:
 
-		  ```json
-		  {
-		    "firstName": "",
-		    "lastName": "",
-		    "email": "",
-		    "phone": "",
-		    "shippingAddress": {
-		      "street": "",
-		      "city": "",
-		      "state": "",
-		      "zipCode": ""
-		    },
-		    "billingAddress": {
-		      "street": "",
-		      "city": "",
-		      "state": "",
-		      "zipCode": ""
-		    },
-		    "program": "mediterranean",
-		    "coupon": "",
-		    "allergens": [
-		      "string"
-		    ],
-		    "clientIdentifier": "",
-		    "days": "5",
-		    "breakfasts": true,
-		    "deliveryDay": "tuesday"
-		  }
-		  ```
+```json
+{
+"firstName": "",
+"lastName": "",
+"email": "",
+"phone": "",
+"shippingAddress": {
+	"street": "",
+	"city": "",
+	"state": "",
+	"zipCode": ""
+},
+"billingAddress": {
+	"street": "",
+	"city": "",
+	"state": "",
+	"zipCode": ""
+},
+"program": "mediterranean",
+"coupon": "",
+"allergens": [
+"string"
+],
+"clientIdentifier": "",
+"days": "5",
+"breakfasts": true,
+"deliveryDay": "tuesday"
+}
+```
 
-		  ## Rate Limiting Information
+## Rate Limiting Information
 
-		  - **Rate Limit**: 100 requests per minute per IP address.
-		  - **Monitoring Usage**: Partners should implement monitoring to track their API usage and avoid hitting the rate limit.
-		  - **Handling Rate Limit Exceeded**: If you receive a 429 error, reduce the frequency of your requests and wait before making additional requests.
+- **Rate Limit**: 100 requests per minute per IP address.
+- **Monitoring Usage**: Partners should implement monitoring to track their API usage and avoid hitting the rate limit.
+- **Handling Rate Limit Exceeded**: If you receive a 429 error, reduce the frequency of your requests and wait before making additional requests.
 
-		  ## Versioning Information
+## Versioning Information
 
-		  - **Current Version**: v1.1.7
-		  - **Versioning Strategy**: The API follows semantic versioning. Updates that introduce breaking changes will increment the major version number.
+- **Current Version**: v1.1.7
+- **Versioning Strategy**: The API follows semantic versioning. Updates that introduce breaking changes will increment the major version number.
 
-		  ## Security Best Practices
+## Security Best Practices
 
-		  - **API Key Storage**: Store API keys securely and do not hard-code them in your application.
-		  - **Sensitive Data Handling**: Ensure that sensitive data such as patient information is handled securely and in compliance with relevant regulations.
+- **API Key Storage**: Store API keys securely and do not hard-code them in your application.
+- **Sensitive Data Handling**: Ensure that sensitive data such as patient information is handled securely and in compliance with relevant regulations.
 
-		  ## Interactive API Explorer
+## Interactive API Explorer
 
-		  - **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/#/)
-		  - Partners can use the interactive API explorer to test endpoints and see example responses.
+- **Test Environment URL**: [Test Environment](https://api-uat.lifechef.com/api-docs/#/)
+- Partners can use the interactive API explorer to test endpoints and see example responses.
 
-		  ## Contact Information
+## Contact Information
 
-		  - **Support Email**: support@lifechef.com
-		  - **Phone Number**: 1-855-932-4048
-		  - **Office Hours**: Monday - Friday, 9 AM - 5 PM EST
+- **Support Email**: support@lifechef.com
+- **Phone Number**: 1-855-932-4048
+- **Office Hours**: Monday - Friday, 9 AM - 5 PM EST
 
-		  ## Change Log
+## Change Log
 
-		  - **v1.1.7**: Public release of the LifeChef API spec.
+- **v1.1.7**: Public release of the LifeChef API spec.
