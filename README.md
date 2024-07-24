@@ -940,8 +940,9 @@ The user has the option to skip one or more upcoming deliveries (weeks). When a 
 1. Predefine `program` value set as - "mediterranean".
 2. Predefine `days` value set as - "5"
 3. Predefine selection of `breakfasts` set as - "true"
-4. Predefine `deliveryDay` set as - "tuesday"
-5. If the `coupon` value is not set, the default coupon will be set automatically. In case several coupons are available the Default coupon will be the top one.
+4. Predefine `deliveryDay` set as - "tuesday".
+5. Predefine `allergens` set as - "string". If need to add allergens "string" should be replaced by correct.
+6. If the `coupon` value is not set, the default coupon will be set automatically. In case several coupons are available the Default coupon will be the top one.
    
 **Predefined Example**:
 
