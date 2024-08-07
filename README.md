@@ -91,7 +91,7 @@ Partners are provided with a unique set of API keys that identify them from othe
 
 - **Endpoint**: `POST /v1/referral`
 - **Description**: This endpoint is used to create a new referral in the LifeChef system. A referral represents a potential patient who has been referred to LifeChef but has not yet completed the full signup process.
-- **Request Parameters**: The request should include all known details about the referral, such as contact information, shipping and billing addresses, and program preferences. Mandatory fields are marked with "\*".
+- **Request Parameters**: The request should include all known details about the referral, such as contact information, shipping and billing addresses, and program preferences. Mandatory fields are marked with "*".
 - **Response**: Upon successful creation, the API will return a referral ID and a unique URL that the referral can use to complete their signup process.
 
 **Request Example**:
@@ -117,7 +117,8 @@ Partners are provided with a unique set of API keys that identify them from othe
   "program": "diabetes-friendly",
   "coupon": "coupon_name",
   "allergens": [
-    "peanuts", "gluten"
+    "peanuts",
+    "gluten"
   ],
   "clientIdentifier": "partner123",
   "days": "5",
@@ -155,7 +156,7 @@ Partners are provided with a unique set of API keys that identify them from othe
 ]
 ```
 
-Your JSON response example is mostly correctly formatted, but there are some minor issues with indentation and a missing closing brace for one of the objects. Here is the corrected and properly formatted JSON response example:
+**Response Example of Subscription**:
 
 ```json
 [
@@ -166,7 +167,7 @@ Your JSON response example is mostly correctly formatted, but there are some min
     "status": "Subs (ACTIVE)",
     "registrationDateReferral": "2024-07-22T12:32:56.313Z",
     "registrationDateSubs": "2024-07-22T12:33:13.105Z",
-      "programData": {
+    "programData": {
       "program": "low-carbohydrate",
       "meals": 14,
       "breakfasts": 7,
@@ -203,24 +204,24 @@ Your JSON response example is mostly correctly formatted, but there are some min
 **Response Example**:
 
 ```json
-		  [
-		    {
-		      "id": "mediterranean",
-		      "title": "Healthy Life™ Program"
-		    },
-		    {
-		      "id": "diabetes-friendly",
-		      "title": "Diabetes Program"
-		    },
-		    {
-		      "id": "dashlow-sodium",
-		      "title": "Heart Program"
-		    },
-		    {
-		      "id": "low-carbohydrate",
-		      "title": "Weight Loss Program"
-		    }
-		  ]
+[
+  {
+    "id": "mediterranean",
+    "title": "Healthy Life™ Program"
+  },
+  {
+    "id": "diabetes-friendly",
+    "title": "Diabetes Program"
+  },
+  {
+    "id": "dashlow-sodium",
+    "title": "Heart Program"
+  },
+  {
+    "id": "low-carbohydrate",
+    "title": "Weight Loss Program"
+  }
+]
 ```
 
 ### Get Available Allergens
@@ -231,48 +232,48 @@ Your JSON response example is mostly correctly formatted, but there are some min
 **Response Example**:
 
 ```json
-		  [
-		    {
-		      "id": "cows-milk",
-		      "title": "Cow's Milk"
-		    },
-		    {
-		      "id": "eggs",
-		      "title": "Eggs"
-		    },
-		    {
-		      "id": "peanuts",
-		      "title": "Peanuts"
-		    },
-		    {
-		      "id": "fish",
-		      "title": "Fish"
-		    },
-		    {
-		      "id": "shellfish",
-		      "title": "Shellfish"
-		    },
-		    {
-		      "id": "tree-nuts",
-		      "title": "Tree Nuts"
-		    },
-		    {
-		      "id": "wheat",
-		      "title": "Wheat"
-		    },
-		    {
-		      "id": "soy",
-		      "title": "Soy"
-		    },
-		    {
-		      "id": "gluten",
-		      "title": "Gluten"
-		    },
-		    {
-		      "id": "sesame",
-		      "title": "Sesame"
-		    }
-		  ]
+[
+  {
+    "id": "cows-milk",
+    "title": "Cow's Milk"
+  },
+  {
+    "id": "eggs",
+    "title": "Eggs"
+  },
+  {
+    "id": "peanuts",
+    "title": "Peanuts"
+  },
+  {
+    "id": "fish",
+    "title": "Fish"
+  },
+  {
+    "id": "shellfish",
+    "title": "Shellfish"
+  },
+  {
+    "id": "tree-nuts",
+    "title": "Tree Nuts"
+  },
+  {
+    "id": "wheat",
+    "title": "Wheat"
+  },
+  {
+    "id": "soy",
+    "title": "Soy"
+  },
+  {
+    "id": "gluten",
+    "title": "Gluten"
+  },
+  {
+    "id": "sesame",
+    "title": "Sesame"
+  }
+]
 ```
 
 ### Get Available Coupons
@@ -284,9 +285,9 @@ Your JSON response example is mostly correctly formatted, but there are some min
 
 ```json
 [
-"coupon_name_1",
-"coupon_name_2",
-"coupon_name_3"
+  "coupon_name_1",
+  "coupon_name_2",
+  "coupon_name_3"
 ]
 ```
 
@@ -302,10 +303,10 @@ Your JSON response example is mostly correctly formatted, but there are some min
 
 A program refers to the user's MTM. The user can have only one program. Available options include:
 
-- **Healthy Life (mediterranean)**
-- **Diabetes Program (diabetes-friendly)**
-- **Heart Program (dashlow-sodium)**
-- **Weight Loss Program (low-carbohydrate)**
+- **Healthy Life** (mediterranean)
+- **Diabetes Program** (diabetes-friendly)
+- **Heart Program** (dashlow-sodium)
+- **Weight Loss Program** (low-carbohydrate)
 
 The program also has additional parameters, based on which the cart composition is generated: allergens, additional diets, meals servings per week and dislike meal components.
 
@@ -350,31 +351,31 @@ The program also has additional parameters, based on which the cart composition 
 
 ```json
 {
-"firstName": "",
-"lastName": "",
-"email": "",
-"phone": "",
-"shippingAddress": {
-	"street": "",
-	"city": "",
-	"state": "",
-	"zipCode": ""
-},
-"billingAddress": {
-	"street": "",
-	"city": "",
-	"state": "",
-	"zipCode": ""
-},
-"program": "mediterranean",
-"coupon": "",
-"allergens": [
-"string"
-],
-"clientIdentifier": "",
-"days": "5",
-"breakfasts": true,
-"deliveryDay": "tuesday"
+  "firstName": "",
+  "lastName": "",
+  "email": "",
+  "phone": "",
+  "shippingAddress": {
+    "street": "",
+    "city": "",
+    "state": "",
+    "zipCode": ""
+  },
+  "billingAddress": {
+    "street": "",
+    "city": "",
+    "state": "",
+    "zipCode": ""
+  },
+  "program": "mediterranean",
+  "coupon": "",
+  "allergens": [
+    "string"
+  ],
+  "clientIdentifier": "",
+  "days": "5",
+  "breakfasts": true,
+  "deliveryDay": "tuesday"
 }
 ```
 
